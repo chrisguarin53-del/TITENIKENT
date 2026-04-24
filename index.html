@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Website ni Kentot</title>
+
+<style>
+    /* FIX: remove default browser margin */
+    body {
+        margin: 0;
+    }
+
+    :root {
+        --fsi-bg-image: url('https://www.image2url.com/r2/default/images/1777030686019-ce7f92c1-fdb7-40b9-9dec-0893d3daf124.jpg');
+        --fsi-min-height: 100vh;
+        --fsi-padding: 2rem 1.5rem;
+        --fsi-text-color: #ffffff;
+        --fsi-overlay-color: rgba(0, 0, 0, 0.4);
+        --fsi-cta-border-color: #ffffff;
+    }
+
+    .fsi-hero {
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        position: relative;
+        width: 100%;
+        min-height: var(--fsi-min-height);
+        padding: var(--fsi-padding);
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        background-image: var(--fsi-bg-image);
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .fsi-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--fsi-overlay-color);
+        z-index: 1;
+    }
+
+    .fsi-hero * {
+        box-sizing: border-box;
+    }
+
+    .fsi-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 700px;
+    }
+
+    .fsi-hero-title {
+        color: var(--fsi-text-color);
+        margin: 0 0 0.5rem 0;
+        font-size: clamp(3rem, 8vw, 5.5rem);
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    .fsi-hero-tagline {
+        color: var(--fsi-text-color);
+        margin: 0 0 2.5rem 0;
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        opacity: 0.9;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    .fsi-hero-cta {
+        display: inline-block;
+        background: transparent;
+        color: var(--fsi-text-color);
+        border: 2px solid var(--fsi-cta-border-color);
+        padding: 0.8rem 2.2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        text-transform: uppercase;
+    }
+
+    .fsi-hero-cta:hover {
+        background-color: var(--fsi-cta-border-color);
+        color: #000000;
+    }
+
+body {
+    background-color: #f0f0f0; /* A neutral light gray */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+}
+
+/* === Grid Container for the Cards === */
+.cards-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+/* === Overlay Text on Image Card Styles === */
+.oti-card {
+    --oti-card-radius: 12px;
+    --oti-card-height: 420px;
+
+    position: relative; /* Positioning context for children */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Pushes content to the bottom */
+    height: var(--oti-card-height);
+    background: #222; /* Fallback background */
+    border-radius: var(--oti-card-radius);
+    overflow: hidden; /* Clips the image and overlay to the card's shape */
+    text-decoration: none;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease-in-out;
+}
+
+.oti-card:hover {
+    transform: scale(1.03);
+}
+
+/* The card's background image */
+.oti-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.oti-card:hover .oti-card-image {
+    transform: scale(1.1);
+    filter: brightness(0.9);
+}
+
+/* Gradient overlay for text readability */
+.oti-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 75%);
+}
+
+/* Wrapper for the text content */
+.oti-card-content {
+    position: relative; /* Places content above the overlay */
+    z-index: 3;
+    padding: 1.5rem;
+}
+
+.oti-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.oti-card-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.85;
+}
+
+:root {
+        --tcf-padding: 3rem 1.5rem;
+        --tcf-max-width: 1100px;
+        --tcf-gap: 2rem;
+        --tcf-bg-color: #ffffff;
+        --tcf-text-color: #212529;
+        --tcf-headline-color: #000000;
+        --tcf-cta-bg: #007bff;
+        --tcf-cta-hover-bg: #0069d9;
+        --tcf-cta-text-color: #ffffff;
+    }
+    .two-col-hero {
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        width: 100%;
+        background-color: var(--tcf-bg-color);
+        color: var(--tcf-text-color);
+        padding: var(--tcf-padding);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .two-col-hero * {
+         box-sizing: border-box;
+    }
+    .two-col-hero-container {
+        width: 100%;
+        max-width: var(--tcf-max-width);
+        display: flex;
+        flex-direction: column;
+        gap: var(--tcf-gap);
+    }
+    .two-col-hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    .two-col-hero-title {
+        margin: 0 0 1rem 0;
+        font-size: clamp(2.25rem, 6vw, 3.5rem);
+        color: var(--tcf-headline-color);
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .two-col-hero-description {
+        margin: 0 0 2rem 0;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .two-col-hero-cta {
+        display: inline-block;
+        background-color: var(--tcf-cta-bg);
+        color: var(--tcf-cta-text-color);
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        align-self: center;
+    }
+    .two-col-hero-cta:hover {
+        background-color: var(--tcf-cta-hover-bg);
+    }
+    .two-col-hero-image-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .two-col-hero-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    @media (min-width: 768px) {
+        .two-col-hero-container {
+            flex-direction: row;
+            align-items: center;
+        }
+        .two-col-hero-content {
+            flex-basis: 50%;
+            text-align: left;
+            padding-right: var(--tcf-gap);
+        }
+        .two-col-hero-description, .two-col-hero-cta {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .two-col-hero-cta {
+            align-self: flex-start;
+        }
+        .two-col-hero-image-wrapper {
+            flex-basis: 50%;
+        }
+    }
+
+
+    :root {
+            --footer-bg: #222529;
+            --footer-text: #adb5bd;
+            --footer-heading: #ffffff;
+            --footer-link-hover: #ffffff;
+            --footer-border: #3b3f44;
+        }
+
+        /* Basic body styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        main {
+            flex-grow: 1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main-content {
+            padding: 2rem 0;
+            background-color: #ffffff; /* Page content needs a background */
+        }
+        
+        .main-content-wrapper {
+             background-color: #ffffff; /* Set this to your main page background color */
+        }
+
+        /* FOOTER STYLES START HERE */
+        
+        /* The SVG divider itself */
+        .footer-divider {
+            line-height: 0; /* Removes any extra space around the SVG */
+            background-color: #ffffff; /* Match the content background above it */
+        }
+        .footer-divider svg {
+            display: block;
+            width: 100%;
+            height: 80px; /* Adjust height of the wave */
+            fill: var(--footer-bg);
+        }
+
+        .footer-wave {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 2rem 0 3rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-top: -1px; /* Overlap slightly to prevent rendering gaps */
+        }
+        
+        .footer-wave__main-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile-first */
+            gap: 2.5rem;
+        }
+
+        .footer-wave__heading {
+            color: var(--footer-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 1rem 0;
+        }
+        
+        .footer-wave__links ul { margin: 0; padding: 0; list-style: none; }
+        .footer-wave__links li:not(:last-child) { margin-bottom: 0.75rem; }
+        .footer-wave__links a { color: var(--footer-text); text-decoration: none; transition: color 0.2s; }
+        .footer-wave__links a:hover { color: var(--footer-link-hover); }
+
+        .footer-wave__bottom {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--footer-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .footer-wave__copyright { font-size: 0.875em; }
+
+        @media (min-width: 600px) {
+            .footer-wave__main-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .footer-wave__main-grid {
+                grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            }
+            .footer-wave__bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+</style>
+</head>
+
+<body>
+
+<section class="fsi-hero">
+    <div class="fsi-hero-content">
+        <h1 class="fsi-hero-title">KENT I LOVE YOU</h1>
+        <p class="fsi-hero-tagline">CRUSH NI KENT SI SHEEN</p>
+    </div>
+</section>
+<br>
+    <h1 style="text-align: center; font-size: 75px;">GALLERY NI KENT</h1>
+<div class="cards-grid-container">
+    
+    <!-- Card 1 -->
+    <a href="#" class="oti-card" aria-label="Explore a Tropical Paradise">
+        <!-- Image from picsum.photos. Replace with your own. -->
+        <img class="oti-card-image" src="https://www.image2url.com/r2/default/images/1777030267407-722e7d86-69fa-4360-b0a1-f27f1fb2949f.png" alt="An aerial view of a tropical beach with turquoise water.">
+        <div class="oti-card-content">
+            <h3 class="oti-card-title">Ansarap Ko</h3>
+            <p class="oti-card-description">MIss U kate</p>
+        </div>
+    </a>
+    
+    <!-- Card 2 -->
+    <a href="#" class="oti-card" aria-label="Journey Through the Ancient Forest">
+        <!-- Image from picsum.photos. Replace with your own. -->
+        <img class="oti-card-image" src="https://www.image2url.com/r2/default/images/1777030474776-2b61adc9-9da2-4c87-b63a-9a105cfbad18.png" alt="Sunbeams shining through a dense, mystical forest.">
+        <div class="oti-card-content">
+            <h3 class="oti-card-title">Allen KAlbo</h3>
+            <p class="oti-card-description">Allen KAlboAllen KAlboAllen KAlboAllen KAlboAllen KAlboAllen KAlbo</p>
+        </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="oti-card" aria-label="Adventures in the Mountain Range">
+        <!-- Image from picsum.photos. Replace with your own. -->
+        <img class="oti-card-image" src="https://www.image2url.com/r2/default/images/1777030375987-e5eacce3-da27-4da8-a11c-f9bf05170ab7.png" alt="A dramatic mountain range with peaks reflecting in a calm lake.">
+        <div class="oti-card-content">
+            <h3 class="oti-card-title">Crush Ni kent</h3>
+            <p class="oti-card-description">Si Sheen</p>
+        </div>
+    </a>
+    
+    <!-- Card 3 -->
+    <a href="#" class="oti-card" aria-label="Adventures in the Mountain Range">
+        <!-- Image from picsum.photos. Replace with your own. -->
+        <img class="oti-card-image" src="https://www.image2url.com/r2/default/images/1777030616096-8b20a6ca-9756-4411-b1c0-d016389d62ef.png" alt="A dramatic mountain range with peaks reflecting in a calm lake.">
+        <div class="oti-card-content">
+            <h3 class="oti-card-title">Ansarap ko</h3>
+            <p class="oti-card-description">Bading Ako.</p>
+        </div>
+    </a>
+
+</div>
+<h1 style="text-align: center; font-size: 75px;">ABOUT US</h1>
+<section class="two-col-hero">
+    <div class="two-col-hero-container">
+    
+        <div class="two-col-hero-content">
+            <h1 class="two-col-hero-title">ANG MGA MASASARAP</h1>
+            <p class="two-col-hero-description">
+                Masasarap is a passionate and creative group dedicated to delivering not just food, but unforgettable experiences. True to our name, we take pride in offering delicious, high-quality products that bring joy and satisfaction to every customer. Our team is built on teamwork, dedication, and a shared love for excellence, making sure that every detail—from preparation to presentation—is done with care.
+            </p>
+        </div>
+        
+        <div class="two-col-hero-image-wrapper">
+
+            <img src="https://www.image2url.com/r2/default/images/1777030686019-ce7f92c1-fdb7-40b9-9dec-0893d3daf124.jpg" alt="A screenshot of the Nexus AI application dashboard showing a clean and intuitive user interface." class="two-col-hero-image">
+        </div>
+
+    </div>
+</section>
+
+    <footer class="footer-wave" role="contentinfo">
+        <div class="container">
+            <div class="footer-wave__main-grid">
+                <div class="footer-wave__about">
+                    <h3 class="footer-wave__heading">About Us</h3>
+                    <p>We create beautiful, modern web templates to help your projects stand out. This wave is just the beginning.</p>
+                </div>
+                <div class="footer-wave__links">
+                    <h3 class="footer-wave__heading">Navigate</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-wave__links">
+                    <h3 class="footer-wave__heading">Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-wave__links">
+                    <h3 class="footer-wave__heading">Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-wave__bottom">
+                <p class="footer-wave__copyright">&copy; 2025 Your Brand. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
